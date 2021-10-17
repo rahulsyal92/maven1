@@ -1,0 +1,38 @@
+node {
+    
+     def mavenHome = tool name: "maven3.8.3"
+    stage('CHECKOUT'){
+      git 'https://github.com/rahulsyal92/maven1.git'  
+    }
+    
+     stage('BULD_CODE'){
+      sh "${mavenHome}/bin/mvn clean package"  
+    }
+    stage('ExecuteSonarqube report'){
+      sh "${mavenHome}/bin/mvn sonar:sonar"  
+    }
+    /*
+    stage('StoreArtifactintoNexus'){
+      sh "${mavenHome}/bin/mvn deploy"  
+    }
+    */
+    stage('DeployAppintoTomcat'){
+      sshagent(['3185b570-70a7-4dec-87c8-ad9f90255ac2']) {
+     sh 'scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.8.79:/opt/apache-tomcat-9.0.54/webapps/'
+     
+}  
+    }
+    
+    stage('shutdownTomcat'){
+      sshagent(['3185b570-70a7-4dec-87c8-ad9f90255ac2']) {
+      sh 'ssh -o StrictHostKeyChecking=no ec2-user@172.31.8.79 sh /opt/apache-tomcat-9.0.54/bin/shutdown.sh'
+}  
+    }
+    stage('startTomcat'){
+      sshagent(['3185b570-70a7-4dec-87c8-ad9f90255ac2']) {
+      sh 'ssh -o StrictHostKeyChecking=no ec2-user@172.31.8.79 sh /opt/apache-tomcat-9.0.54/bin/startup.sh'
+}  
+    }
+    
+     
+}// node closing
