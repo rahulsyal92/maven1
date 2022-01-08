@@ -36,11 +36,11 @@ out.println("Server Host Name :: "+inetAddress.getHostName());
 		+91-8219***)^^
 		rahulsyal9876@gmail.com
 		<br>
-		<a href="mailto:rahulsyal9876@gmail.com">Mail to RAhul syal</a>
+		<a href="mailto:rahuls9876@gmail.com">Mail to RAhul syal</a>
 	</span>
 </div>
 <hr>
-	<p> Service : <a href="services/employee/getEmployeeDetails">Get Employee Details </p>
+	<p> Service : <a href="services/employee/getEmployeeDetails">Contact at 821********* </p>
 <hr>
 <hr>
 <p align=center>RAHUL SYAL.</p>
