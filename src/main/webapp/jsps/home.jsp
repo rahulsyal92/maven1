@@ -26,9 +26,7 @@ out.println("Server Host Name :: "+inetAddress.getHostName());
 </h1>
 <hr>
 <div style="text-align: center;">
-	<span>
-		<img src="images/mithunlogo.jpg" alt="" width="100">
-	</span>
+	
 	<span style="font-weight: bold;">
 		Rahul Syal, 
 		Sujanpur tira
